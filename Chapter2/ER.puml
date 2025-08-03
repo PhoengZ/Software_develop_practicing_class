@@ -1,0 +1,33 @@
+@startuml
+skinparam Linetype ortho
+
+entity "Hospital" as e01{
+    *h_id : number <<generated>>
+    --
+    *name : text 
+    location : text
+    contact : text
+}
+
+entity "User" as e02 {
+    *u_id : number <<generated>>
+    --
+    *username : text
+    *password : text
+    name : text
+    email : text
+    phone : text
+    role : ("admin" | "user") 
+}
+
+entity "Appointment" as e03 { 
+    *a_id : number <<generated>>
+    --
+    *u_id : number <<FK>>
+    *h_id : number <<FK>>
+    *date : date
+}
+
+e01 |o--|{ e03 : "has"
+e02 |o--|{ e03 : "booking"
+@enduml
