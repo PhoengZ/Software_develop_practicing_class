@@ -25,7 +25,7 @@ controllersHospitals->client --:response
 
 client->server ++:req.get('/api/v1/hospitals')
 server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
-routerHospitals -> controllersHospitals ++:getAllHospitals()
+routerHospitals -> controllersHospitals ++:getHospitals()
 controllersHospitals -> modelHospital ++:findAll()
 modelHospital -> HospitalsDatabase ++: findAll()
 HospitalsDatabase --> modelHospital --:hospitals
@@ -35,7 +35,7 @@ controllersHospitals ->client --:response
 
 client->server :req.get('/api/v1/hospitals/:id')
 server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
-routerHospitals -> controllersHospitals ++:getHospitalById()
+routerHospitals -> controllersHospitals ++:getHospital()
 controllersHospitals -> modelHospital ++:findById(req.params.id)
 modelHospital -> HospitalsDatabase ++: findById(id)
 HospitalsDatabase --> modelHospital --:hospital
@@ -46,7 +46,7 @@ controllersHospitals ->client --:response
 
 client->server :req.put('/api/v1/hospitals/:id')
 server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
-routerHospitals -> controllersHospitals ++:updateHospitalById()
+routerHospitals -> controllersHospitals ++:updateHospital()
 controllersHospitals -> modelHospital ++:updateById(req.params.id, req.body)
 modelHospital -> HospitalsDatabase ++: updateById(id, data)
 HospitalsDatabase --> modelHospital --:updated hospital
@@ -56,7 +56,7 @@ controllersHospitals ->client --:response
 
 client->server :req.delete('/api/v1/hospitals/:id')
 server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
-routerHospitals -> controllersHospitals ++:deleteHospitalById()
+routerHospitals -> controllersHospitals ++:deleteHospital()
 controllersHospitals -> modelHospital ++:deleteById(req.params.id)
 modelHospital -> HospitalsDatabase ++: deleteById(id)
 HospitalsDatabase --> modelHospital --:deleted hospital
