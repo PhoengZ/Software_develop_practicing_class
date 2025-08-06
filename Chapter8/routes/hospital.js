@@ -1,8 +1,11 @@
 const express = require('express')
 const {getHospitals, getHospitalsById, createHospital, updateHospital, deleteHospital} = require('../controllers/hospitals')
-const router = express.Router()
+const {authorize} = require('../controllers/auth')
+const {protect} = require('../middleware/auth')
 
-router.route('/').get(getHospitals).post(createHospital)
-router.route('/:id').get(getHospitalsById).put(updateHospital).delete(deleteHospital)
+const router = express.Router()
+//..rolese know with itself that its paramter have to change to array not parse array into the function
+router.route('/').get(getHospitals).post(protect,authorize('admin'),createHospital)
+router.route('/:id').get(getHospitalsById).put(protect,authorize('admin'),updateHospital).delete(protect,authorize('admin'),deleteHospital)
 
 module.exports = router

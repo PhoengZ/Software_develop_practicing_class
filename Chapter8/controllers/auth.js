@@ -9,10 +9,7 @@ exports.register = async (req,res,next)=>{
             role
         })
         const token = user.getSignedJwtToken()
-        res.status(201).json({
-            success: true,
-            token: token
-        })
+        tokenResponse(user, 201, res)
         // returned token immediately because auto login after registration
     }catch(e){
         res.status(400).json({
@@ -43,9 +40,41 @@ exports.login = async (req,res,next)=>{
             msg: "Invalid credentials"
         })
     }
-    const token = user.getSignedJwtToken()
+    tokenResponse(user, 200, res)
+}
+
+exports.getMe = async (req,res,next)=>{
+    const user = await User.findById(req.user.id)
     res.status(200).json({
         success: true,
-        token: token
+        data:user
     })
 }
+// ...roles is syntax for function can accept multiple arguments sucas array that contain 'user' and 'admin' on the same time
+exports.authorize = (...roles)=>{
+    return (req, res, next)=>{
+        if (!roles.includes(req.user.role)){ // can't use roles !== req.user.role because roles is an array
+            res.status(403).json({
+                success: false,
+                msg: `User role ${req.user.role} is not authorized to access this route`
+            })
+        }
+        next()
+    }
+}
+
+const tokenResponse = (user, statusCode, res) => {
+    const token = user.getSignedJwtToken()
+    const options = {
+        expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    }
+    if (process.env.NODE_ENV === 'production'){
+        options.secure = true
+    }
+    res.status(statusCode).cookie('token', token, options).json({
+        success: true,
+        token
+    })
+}
+
