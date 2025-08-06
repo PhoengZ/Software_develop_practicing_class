@@ -1,0 +1,65 @@
+@startuml Manage Hospital (POST)
+
+header Sameple VacQ Sequence Diagram
+footer Page %page% of %lastpage%
+title "Manage Hospital (POST)"
+
+participant "Client" as client
+participant "<<javaScript>>\n:server" as server
+participant "<<router>>\n:hospitals" as routerHospitals
+participant "<<controllers>>\n:hospitals" as controllersHospitals
+participant "<<model>>\n:Hospital" as modelHospital
+database "<<MongoDB>>\n:hospitals" as HospitalsDatabase
+
+client->server ++:req.post('/api/v1/hospitals')
+server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
+routerHospitals -> controllersHospitals ++:createHospital()
+controllersHospitals->modelHospital ++:create(req.body)
+modelHospital ->HospitalsDatabase ++: HospitalSchema
+HospitalsDatabase --> modelHospital --: hospital
+controllersHospitals <-- modelHospital --:hospital
+controllersHospitals->client --:response
+
+
+== Get All Hospitals == 
+
+client->server ++:req.get('/api/v1/hospitals')
+server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
+routerHospitals -> controllersHospitals ++:getAllHospitals()
+controllersHospitals -> modelHospital ++:findAll()
+modelHospital -> HospitalsDatabase ++: findAll()
+HospitalsDatabase --> modelHospital --:hospitals
+modelHospital --> controllersHospitals --:hospitals
+controllersHospitals ->client --:response
+== Get Hospital By ID ==
+
+client->server :req.get('/api/v1/hospitals/:id')
+server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
+routerHospitals -> controllersHospitals ++:getHospitalById()
+controllersHospitals -> modelHospital ++:findById(req.params.id)
+modelHospital -> HospitalsDatabase ++: findById(id)
+HospitalsDatabase --> modelHospital --:hospital
+modelHospital --> controllersHospitals --:hospital
+controllersHospitals ->client --:response
+
+== Update Hospital By ID ==
+
+client->server :req.put('/api/v1/hospitals/:id')
+server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
+routerHospitals -> controllersHospitals :updateHospitalById()
+controllersHospitals -> modelHospital ++:updateById(req.params.id, req.body)
+modelHospital -> HospitalsDatabase ++: updateById(id, data)
+HospitalsDatabase --> modelHospital --:updated hospital
+modelHospital --> controllersHospitals --:updated hospital
+controllersHospitals ->client --:response
+== Delete Hospital By ID == 
+
+client->server :req.delete('/api/v1/hospitals/:id')
+server->routerHospitals ++:app.use('/api/v1/hospitals',hospitals)
+routerHospitals -> controllersHospitals :deleteHospitalById()
+controllersHospitals -> modelHospital ++:deleteById(req.params.id)
+modelHospital -> HospitalsDatabase ++: deleteById(id)
+HospitalsDatabase --> modelHospital --:deleted hospital
+modelHospital --> controllersHospitals --:deleted hospital
+controllersHospitals ->client --:response
+@enduml
