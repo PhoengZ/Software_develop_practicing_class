@@ -36,7 +36,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/api/v1/hospitals/1",
+							"raw": "{{baseURL}}/api/v1/hospitals/6893279368f0fbb6597b0fc9",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -44,7 +44,7 @@
 								"api",
 								"v1",
 								"hospitals",
-								"1"
+								"6893279368f0fbb6597b0fc9"
 							]
 						},
 						"description": "Fetch single hospital following id param from database"
@@ -58,7 +58,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Phoeng hospitals\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Phoeng hospitals\",\r\n    \"address\":\"brah brah brah\",\r\n    \"district\":\"test\",\r\n    \"province\":\"test province\",\r\n    \"postalCode\":\"11111\",\r\n    \"tel\":\"100132131\",\r\n    \"region\":\"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,7 +87,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"test hospitals\"\r\n}",
+							"raw": "{\r\n    \"name\":\"test haha\",\r\n    \"bugfield\": \"test error\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/api/v1/hospitals/2",
+							"raw": "{{baseURL}}/api/v1/hospitals/6893279368f0fbb6597b0fc9",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -103,7 +103,7 @@
 								"api",
 								"v1",
 								"hospitals",
-								"2"
+								"6893279368f0fbb6597b0fc9"
 							]
 						},
 						"description": "Update hospital following id param and edit hospital following request body"
@@ -116,7 +116,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/api/v1/hospitals/1",
+							"raw": "{{baseURL}}/api/v1/hospitals/689323dfa9cdabe9b68cb20f",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -124,7 +124,7 @@
 								"api",
 								"v1",
 								"hospitals",
-								"1"
+								"689323dfa9cdabe9b68cb20f"
 							]
 						},
 						"description": "Delete hospital following id param on database"
