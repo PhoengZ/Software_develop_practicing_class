@@ -52,17 +52,7 @@ exports.getMe = async (req,res,next)=>{
     })
 }
 // ...roles is syntax for function can accept multiple arguments sucas array that contain 'user' and 'admin' on the same time
-exports.authorize = (...roles)=>{
-    return (req, res, next)=>{
-        if (!roles.includes(req.user.role)){ // can't use roles !== req.user.role because roles is an array
-            res.status(403).json({
-                success: false,
-                message: `User role ${req.user.role} is not authorized to access this route`
-            })
-        }
-        next()
-    }
-}
+
 
 const tokenResponse = (user, statusCode, res) => {
     const token = user.getSignedJwtToken()

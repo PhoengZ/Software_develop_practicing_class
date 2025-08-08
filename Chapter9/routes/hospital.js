@@ -1,7 +1,6 @@
 const express = require('express')
 const {getHospitals, getHospitalsById, createHospital, updateHospital, deleteHospital} = require('../controllers/hospitals')
-const {authorize} = require('../controllers/auth')
-const {protect} = require('../middleware/auth')
+const {protect,authorize} = require('../middleware/auth')
 const apptRoute = require('./appointments')
 const router = express.Router()
 
