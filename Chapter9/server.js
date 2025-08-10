@@ -6,7 +6,6 @@ const apptRoutes = require('./routes/appointments')
 const cookieParser = require('cookie-parser')
 
 const {connectDB} = require('./config/db')
-
 dotenv.config({path: './config/config.env'})
 
 connectDB()
