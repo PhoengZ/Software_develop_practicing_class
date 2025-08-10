@@ -15,7 +15,7 @@ function Header(){
         navigate('/')
     }
     return (
-        <header className=" w-screen bg-blue-400 sticky top-0 z-50 shadow-md px-4 sm:px-6 lg:px-8">
+        <header className="w-screen sticky top-0 z-50 shadow-md px-4 sm:px-6 lg:px-8 box-border">
             <div className=" flex justify-between items-center">
                 <div className=" font-bold text-2xl text-gray-700">
                     <Link to='/'>Support desk</Link>
@@ -30,14 +30,14 @@ function Header(){
                     ):(
                         // use this element because : syntax have 1 element but below return two element thus have to use <>
                         <> 
-                            <li>
+                            <li className=" ">
                                 <Link to='/login'>
-                                    <FaSignInAlt/> Login
+                                    <FaSignInAlt className=" inline-block"/> Login
                                 </Link>
                             </li>
                             <li>
                                 <Link to='/register'>
-                                    <FaSignOutAlt/> Register
+                                    <FaSignOutAlt className=" inline-block"/> Register
                                 </Link>
                             </li>
                         </>

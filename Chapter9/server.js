@@ -4,7 +4,7 @@ const hospitalRoutes = require('./routes/hospital')
 const authRoutes = require('./routes/auth')
 const apptRoutes = require('./routes/appointments')
 const cookieParser = require('cookie-parser')
-
+const cors = require('cors')
 const {connectDB} = require('./config/db')
 dotenv.config({path: './config/config.env'})
 
@@ -14,6 +14,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 app.use('/api/v1/hospitals', hospitalRoutes)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/appointments',apptRoutes)

@@ -41,21 +41,27 @@ function Login(){
     }
     return (
         <>
-            <section className="heading">
-                <h1>
-                    <FaSignInAlt/> Login
+            <section className=" mt-5 sm:mt-10 lg:mt-20 flex flex-col gap-5">
+                <h1 className=" text-center text-5xl font-bold">
+                    <FaSignInAlt className=" inline-block"/> Login
                 </h1>
-                <p>Please login to get support</p>
+                <p className=" text-center text-gray-500 font-bold text-3xl">Please login to get support</p>
             </section>
-            <section className="form">
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input type="text" className="form-control" name="email" id="email" value={email} onChange={onChange}
+            <section className=" px-5 sm:px-10 lg:px-20 mt-10 w-8/12 mx-auto">
+                <form onSubmit={onSubmit} className="w-full flex justify-center items-center flex-col gap-5">
+                    <div className="w-full">
+                        <input type="text" className="w-full border-2 rounded-md px-2 py-2 shadow-md" name="email" id="email" value={email} onChange={onChange}
                         placeholder="Enter your email" required/>
                     </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control" name="password" id="password" value={password}
+                    <div className="w-full">
+                        <input type="password" className="w-full border-2 rounded-md px-2 py-2 shadow-md" name="password" id="password" value={password}
                         onChange={onChange} placeholder="Enter your password" required/>
+                    </div>
+                    <div className='w-full'>
+                        <button className='w-full border-2 rounded-md px-2 py-2 shadow-md bg-black text-white border-white
+                         transition duration-400 ease-in-out hover:bg-gray-700'>
+                            Submit
+                        </button>
                     </div>
                 </form>
             </section>

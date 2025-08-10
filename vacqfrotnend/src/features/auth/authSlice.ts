@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 import authServices from './authServices'
 import { FaSellcast } from 'react-icons/fa'
+import { act } from 'react'
 
 const user = localStorage.getItem('user')
 
@@ -84,6 +85,9 @@ export const authSlice = createSlice({
             state.isLoading =false,
             state.isError = true,
             state.message = action.payload as string,
+            state.user = null
+        })
+        .addCase(logout.fulfilled, (state)=>{
             state.user = null
         })
     }

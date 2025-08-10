@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className='container'>
+        <div className='overflow-x-hidden'>
           <Header/>
           <Routes>
             <Route path='/' element={<Home/>}/>

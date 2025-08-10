@@ -28,7 +28,7 @@ function Register(){
         if (isSuccess || user){
             navigate('/')
         }
-        disPatch(reset()); // start function reset
+        disPatch(reset()); // start function reset and trigger redux with dispatch correspond function
     },[isError, isSuccess, user, message, navigate, disPatch])
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -53,36 +53,37 @@ function Register(){
     }
     return (
         <>
-            <section className='heading'>
-                <h1>
-                    <FaUser/>Register
+            <section className=' mt-5 sm:mt-10 lg:mt-20 flex flex-col gap-5'>
+                <h1 className='text-center text-5xl font-bold'>
+                    <FaUser className='inline-block'/>Register
                 </h1>
-                <p>Please create an account</p>
+                <p className=" text-center text-gray-500 font-bold text-3xl">Please create an account</p>
             </section>
-            <section className='form'>
-                <form onSubmit={onSubmit}>
-                    <div className='form-group'>
-                        <input type="text" className='form-control' id='name' name='name' value={name} 
+            <section className=" px-5 sm:px-10 lg:px-20 mt-10 w-8/12 mx-auto">
+                <form onSubmit={onSubmit} className="w-full flex justify-center items-center flex-col gap-5">
+                    <div className="w-full">
+                        <input type="text" className="w-full border-2 rounded-md px-2 py-2 shadow-md" id='name' name='name' value={name} 
                         onChange={onChange} placeholder='Enter your name' required/>
                     </div>
-                    <div className='form-group'>
-                        <input type="email" className='form-control' id='email' name='email' value={email} 
+                    <div className='w-full'>
+                        <input type="email" className="w-full border-2 rounded-md px-2 py-2 shadow-md" id='email' name='email' value={email} 
                         onChange={onChange} placeholder='Enter your email' required/>
                     </div>
-                    <div className='form-group'>
-                        <input type="password" className='form-control' id='password' name='password' value={password} 
+                    <div className='w-full'>
+                        <input type="password" className="w-full border-2 rounded-md px-2 py-2 shadow-md" id='password' name='password' value={password} 
                         onChange={onChange} placeholder='Enter your password' required/>
                     </div>
-                    <div className='form-group'>
-                        <input type="password" className='form-control' id='password2' name='password2' value={password2} 
+                    <div className='w-full'>
+                        <input type="password" className="w-full border-2 rounded-md px-2 py-2 shadow-md" name='password2' value={password2} 
                         onChange={onChange} placeholder='Confirm your password' required/>
                     </div>
-                    <div className='form-group'>
-                        <input type="text" className='form-control' id='role' name='role' value={role} 
+                    <div className='w-full'>
+                        <input type="text" className="w-full border-2 rounded-md px-2 py-2 shadow-md" id='role' name='role' value={role} 
                         onChange={onChange} placeholder='Enter your role' required/>
                     </div>
-                    <div className='form-group'>
-                        <button className='btn btn-block'>
+                    <div className='w-full'>
+                        <button className='w-full border-2 rounded-md px-2 py-2 shadow-md bg-black text-white border-white
+                         transition duration-400 ease-in-out hover:bg-gray-700'>
                             Submit
                         </button>
                     </div>
