@@ -19,7 +19,6 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route element={<PrivateRoutes/>}>
-                <Route path='/new-appointments' element/>
                 <Route path='/appointments' element={<ViewAppt/>}/>
             </Route>
           </Routes>

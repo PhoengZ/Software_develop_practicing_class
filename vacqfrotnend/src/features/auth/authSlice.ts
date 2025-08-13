@@ -3,9 +3,10 @@ import axios from 'axios'
 import authServices from './authServices'
 
 const user = localStorage.getItem('user')
-
+const token = localStorage.getItem('token')
 const initialState = {
     user: user ? user:null,
+    token: token ? token: null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -78,7 +79,8 @@ export const authSlice = createSlice({
         .addCase(login.fulfilled, (state, action)=>{
             state.isLoading = false,
             state.isSuccess = true,
-            state.user = action.payload
+            state.user = action.payload.name
+            state.token = action.payload.token
         })
         .addCase(login.rejected, (state, action)=>{
             state.isLoading =false,

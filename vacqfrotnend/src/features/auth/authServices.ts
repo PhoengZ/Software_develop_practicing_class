@@ -10,6 +10,7 @@ const register = async(userData: object)=>{
         console.log(response.data.name);
         if (response.data){
             localStorage.setItem('user',response.data.name)
+            localStorage.setItem('token',response.data.token)
         }
         return response.data.name
     }catch(err){
@@ -22,9 +23,9 @@ const register = async(userData: object)=>{
 const login = async(userData: object)=>{
     const response = await axios.post(API_URL+'login',userData)
     console.log(JSON.stringify(response.data));
-    
     if (response){
         localStorage.setItem('user',response.data?.name)
+        localStorage.setItem('token',response.data.token)
     }
     console.log(response.data);
     return response.data
@@ -34,6 +35,7 @@ const logout = async()=>{
     try{
         await axios.get(API_URL + 'logout')
         localStorage.removeItem('user')
+        localStorage.removeItem('token')
     }catch(err){
         console.error('Authservices logot: ');
         console.error(err);

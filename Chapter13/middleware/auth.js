@@ -8,10 +8,11 @@ exports.protect = async (req,res,next)=>{
     }else if (req.cookies && req.cookies.token){
         token = req.cookies.token
     }
+    // Professor doesn't check cookie on request but check on headers
     if (!token || token == 'none'){
         return res.status(401).json({
             success: false,
-            msg: 'Not authorized to access this route'
+            message: 'Not authorized to access this route'
         })
     }
     try{
@@ -24,7 +25,7 @@ exports.protect = async (req,res,next)=>{
         console.error(err.stack)
         return res.status(401).json({
             success: false,
-            msg: 'Not authorized to access this route'
+            message: 'Not authorized to access this route'
         })
     }
 }
