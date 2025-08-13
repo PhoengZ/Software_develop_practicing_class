@@ -1,8 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 import authServices from './authServices'
-import { FaSellcast } from 'react-icons/fa'
-import { act } from 'react'
 
 const user = localStorage.getItem('user')
 
@@ -35,6 +33,7 @@ export const login = createAsyncThunk('auth/login',async(user: object, thunkAPI)
     }catch(err){
         if (axios.isAxiosError(err)) {
             const message = (err.response?.data?.message) || err.message || 'An unknown error occurred.';
+            console.log(err.response?.data);
             return thunkAPI.rejectWithValue(message);
         } else {
             const message = (err instanceof Error) ? err.message : 'An unknown error occurred.';

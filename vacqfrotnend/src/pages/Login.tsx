@@ -41,13 +41,13 @@ function Login(){
     }
     return (
         <>
-            <section className=" mt-5 sm:mt-10 lg:mt-20 flex flex-col gap-5">
-                <h1 className=" text-center text-5xl font-bold">
+            <section className="flex flex-col gap-5 mt-20">
+                <h1 className=" text-center font-bold  text-3xl sm:text-4xl lg:text-6xl">
                     <FaSignInAlt className=" inline-block"/> Login
                 </h1>
-                <p className=" text-center text-gray-500 font-bold text-3xl">Please login to get support</p>
+                <p className=" text-center text-gray-500 font-bold text-2xl sm:text-3xl lg:text-4xl">Please login to get support</p>
             </section>
-            <section className=" px-5 sm:px-10 lg:px-20 mt-10 w-8/12 mx-auto">
+            <section className=" px-1 sm:px-10 lg:px-20 mt-10 w-8/12 mx-auto">
                 <form onSubmit={onSubmit} className="w-full flex justify-center items-center flex-col gap-5">
                     <div className="w-full">
                         <input type="text" className="w-full border-2 rounded-md px-2 py-2 shadow-md" name="email" id="email" value={email} onChange={onChange}
@@ -59,7 +59,7 @@ function Login(){
                     </div>
                     <div className='w-full'>
                         <button className='w-full border-2 rounded-md px-2 py-2 shadow-md bg-black text-white border-white
-                         transition duration-400 ease-in-out hover:bg-gray-700'>
+                         transition duration-300 ease-in-out hover:bg-gray-800'>
                             Submit
                         </button>
                     </div>

@@ -10,8 +10,6 @@ exports.register = async (req,res,next)=>{
         })
         const token = user.getSignedJwtToken()
         tokenResponse(user, 200, res)
-        // i think it should return 201 instead of 200
-        // returned token immediately because auto login after registration
     }catch(e){
         res.status(400).json({
             success: false,
