@@ -5,8 +5,9 @@ import Header from './components/Header'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Register from './pages/Register'
+import ViewAppt from './pages/ViewAppt';
 import './App.css'
-
+import PrivateRoutes from './components/PrivateRoutes'
 function App() {
   return (
     <>
@@ -17,6 +18,10 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
+            <Route element={<PrivateRoutes/>}>
+                <Route path='/new-appointments' element/>
+                <Route path='/appointments' element={<ViewAppt/>}/>
+            </Route>
           </Routes>
         </div>
       </Router>

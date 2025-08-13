@@ -11,10 +11,10 @@ function Home(){
                 <p className=" font-bold text-xl text-gray-600 mt-2 sm:mt-4 lg:mt-6 text-center sm:text-2xl lg:text-4xl">
                     Please choose from option below
                 </p>
-                <Link to='/new-ticket' className=" border-2 rounded-2xl w-full text-center py-3 text-sm sm:text-xl lg:text-2xl transition duration-300 ease-in-out hover:bg-gray-200">
+                <Link to='/new-appointments' className=" border-2 rounded-2xl w-full text-center py-3 text-sm sm:text-xl lg:text-2xl transition duration-300 ease-in-out hover:bg-gray-200">
                     <FaQuestionCircle className=" inline-block"/> Create New Appointment
                 </Link>
-                <Link to='/tickets' className="border-2 rounded-2xl border-gray-500 bg-black w-full text-center text-white py-3 text-sm sm:text-xl lg:text-2xl transition duration-300 ease-in-out hover:bg-gray-800">
+                <Link to='/appointments' className="border-2 rounded-2xl border-gray-500 bg-black w-full text-center text-white py-3 text-sm sm:text-xl lg:text-2xl transition duration-300 ease-in-out hover:bg-gray-800">
                     <FaTicketAlt className=" inline-block"/> View My Appointment
                 </Link>
             </section>
