@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className='overflow-x-hidden'>
+        <div className='overflow-x-hidden min-h-screen'>
           <Header/>
           <Routes>
             <Route path='/' element={<Home/>}/>

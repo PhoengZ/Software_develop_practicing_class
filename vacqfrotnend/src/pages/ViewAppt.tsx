@@ -3,17 +3,23 @@ import hospitalServices from "../features/hospitalServices"
 import appointmentServices from "../features/appointmentServices";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import CreatingForm from "../components/CreatingForm";
 
 function ViewAppt(){
     type Appointment = {
         id: string,
-        hospital:string,
+        hospital:hospitalField,
         apptDate:Date,
         user:string
     }
     type Hospital = {
         id: string,
         name: string
+    }
+    type hospitalField = {
+        name:string,
+        province: string,
+        tel: string
     }
     const [Hospitals, setHospitals] = useState<Hospital[]>([])
     useEffect(()=>{
@@ -76,51 +82,66 @@ function ViewAppt(){
         const data = await appointmentServices.getMyAppt(page,limit)
         setAppointments(data)
     }
-    const handleClose = ()=>{setIsModalOpen(false)}
+    const handleIsModal = ()=>{
+        setIsModalOpen(!isModalOpen)
+        // console.log(isModalOpen);
+    }
+    const handleNext = ()=>{
+        setPage(Page+1)
+    }
+    const handlePrev = ()=>{
+        setPage(Page-1)
+    }
     return (
-        <> 
+        <>  
             <section>
-                <img src="/ChulaEngineeringLogorevised.png" alt="Logo" className=" w-6/12 h-6/12 mx-auto my-auto"/>
+                <img src="/ChulaEngineeringLogorevised.png" alt="Logo" className=" w-full h-full lg:w-6/12 lg:h-6/12 mx-auto my-auto"/>
             </section>
-            <section>
-                <h1>Vaccination appointments</h1>
-                <p>Example of CRUD made with Node.js, Express, MongoDB, and HandleBars</p>
-            </section>
-            <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>appt Date</th>
-                            <th>User</th>
-                            <th>Hospital</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Appointments.map(appt=>(
-                            <tr key={appt.id}>
-                                <td>{appt.apptDate.toISOString()}</td>
-                                <th>{appt.user}</th>
-                                <th>{appt.hospital}</th>
-                                <th>
-                                    <button>Edit</button>
-                                    <button>Remove</button>
-                                </th>
+            <section className="w-full h-full relative p-2 sm:p-4 lg:p-8">
+                    <section className=" flex flex-col justify-center items-center gap-4 sm:gap-8 lg:gap-16">
+                    <h1 className=" text-xl sm:text-2xl lg:text-4xl font-bold text-center">Vaccination appointments</h1>
+                    <p className="text-sm sm:text-xl lg:text-2xl font-light text-center text-gray-700">Example of CRUD made with Node.js, Express, MongoDB, and HandleBars</p>
+                </section>
+                <section className="mt-5 sm:mt-10 lg:mt-20 px-5 sm:px-10 lg:px-20">
+                    <table className="w-full h-fit">
+                        <thead className=" border-b-2 border-t-2 border-gray-400 py-10">
+                            <tr>
+                                <th className="py-2 font-bold text-center">appt Date</th>
+                                <th className="py-2 font-bold text-center">User</th>
+                                <th className="py-2 font-bold text-center">Hospital</th>
+                                <th className="py-2 font-bold text-center">Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className=" border-b-2 border-t-2 border-gray-200 py-10">
+                            {Appointments.map(appt=>(
+                                <tr key={appt.id}>
+                                    <td className="py-2 font-bold text-center">{appt.apptDate.toISOString()}</td>
+                                    <td className="py-2 font-bold text-center">{appt.user}</td>
+                                    <td className="py-2 font-bold text-center">{appt.hospital.name}</td>
+                                    <td className="py-2 font-bold text-center inline">
+                                        <button onClick={handleIsModal} className=" border-2 rounded-sm text-white bg-blue-600 text-center p-2 text-base transition duration-200 ease-in-out hover:bg-red-400">Edit</button>
+                                        <button onClick={()=>handleDeleteAppointment(appt.id)} className=" border-2 rounded-sm text-white bg-red-600 text-center p-2 text-base transition duration-200 ease-in-out hover:bg-blue-400">Remove</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </section>
+                <section className="flex justify-center gap-5 sm:gap-10 lg:gap-20 mt-3 sm:mt-5 lg:mt-10">
+                    {Page > 1 ? (
+                        <button onClick={handlePrev} className=" border-2 rounded-sm border-gray-600 text-center p-2 text-base transition duration-200 ease-in-out hover:bg-gray-400">Prev</button>
+                    ):(
+                        <>
+                        </>
+                    )}
+                    <button onClick={handleNext} className=" border-2 rounded-sm text-white bg-black text-center p-2 text-base transition duration-200 ease-in-out hover:bg-gray-600">Next</button>
+                </section>
+                <button onClick={handleIsModal}
+                    className=" absolute bottom-[-50px] right-4 border-2 rounded-sm text-white bg-green-600 text-center p-2 text-base transition duration-200 ease-in-out hover:bg-green-400">
+                  Add New
+                </button>
+                {isModalOpen && <CreatingForm/> }
             </section>
-            <section>
-                {Page > 1 ? (
-                    <button>Prev</button>
-                ):(
-                    <>
-                    </>
-                )}
-                <button>Next</button>
-            </section>
-            <button> Add New</button>
         </>
     )
         
