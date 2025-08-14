@@ -22,7 +22,7 @@ connectDB()
 const app = express()
 const limiter = rateLimit({
     windowMs: 10*60*1000, // 10 min
-    max: 100 // can send request not more than 100
+    max: 1000000 // can send request not more than 100
 })
 const swaggerOptions = {
     swaggerDefinition:{

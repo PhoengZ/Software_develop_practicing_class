@@ -4,9 +4,11 @@ import authServices from './authServices'
 
 const user = localStorage.getItem('user')
 const token = localStorage.getItem('token')
+const id = localStorage.getItem('id')
 const initialState = {
     user: user ? user:null,
     token: token ? token: null,
+    id:id ? id:null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -65,7 +67,9 @@ export const authSlice = createSlice({
         .addCase(register.fulfilled, (state, action)=>{
             state.isLoading = false,
             state.isSuccess = true,
-            state.user = action.payload
+            state.user = action.payload.name
+            state.token = action.payload.token
+            state.id = action.payload._id
         })
         .addCase(register.rejected, (state, action)=>{
             state.isError = true,
@@ -81,6 +85,7 @@ export const authSlice = createSlice({
             state.isSuccess = true,
             state.user = action.payload.name
             state.token = action.payload.token
+            state.id = action.payload._id
         })
         .addCase(login.rejected, (state, action)=>{
             state.isLoading =false,

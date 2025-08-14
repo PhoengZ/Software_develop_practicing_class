@@ -13,18 +13,17 @@ exports.getHospitalsById = (req,res,next)=>{
 }
 
 exports.createHospital = (req,res,next)=>{
-    const newHospital = req.body
     res.status(201).json({
         success: true,
-        msg: `Create a new Hospital with ${JSON.stringify(newHospital)}`
+        msg: `Create a new Hospital }`
     })
 }
 
 exports.updateHospital = (req,res,next)=>{
-    const id = req.params.id, data = req.body
+    const id = req.params.id
     res.status(200).json({
         success: true,
-        msg: `Update hospital with id : ${id} with data : ${JSON.stringify(data)}`
+        msg: `Update hospital with id : ${id}`
     })
 }
 

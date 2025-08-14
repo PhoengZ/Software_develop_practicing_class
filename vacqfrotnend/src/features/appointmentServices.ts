@@ -34,7 +34,7 @@ const addMyAppt = async(hid: string,payload: object)=>{
 
 const editMyAppt = async(aid: string, payload: object)=>{
     try{
-        const response = await axios.post(API_URL + `appointments/${aid}`,payload,{
+        const response = await axios.put(API_URL + `appointments/${aid}`,payload,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -49,7 +49,7 @@ const editMyAppt = async(aid: string, payload: object)=>{
 
 const delMyAppt = async(aid: string)=>{
     try{
-        const response = await axios.post(API_URL + `appointments/${aid}`,{
+        const response = await axios.delete(API_URL + `appointments/${aid}`,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

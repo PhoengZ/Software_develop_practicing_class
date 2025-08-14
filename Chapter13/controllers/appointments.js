@@ -77,7 +77,10 @@ exports.addAppointment = async(req,res,next)=>{
                 message:`No hospital with the id of : ${hID}`
             })
         }
-        const appt = await Appointment.create(req.body)
+        const appt = await (await Appointment.create(req.body)).populate({
+            path:'hospital',
+            select:'name province tel'
+        })
         res.status(200).json({
             success:true,
             data:appt
@@ -110,6 +113,9 @@ exports.editAppointment = async(req,res,next)=>{
         appointment = await Appointment.findByIdAndUpdate(id, req.body, {
             new:true,
             runValidators: true
+        }).populate({
+            path:'hospital',
+            select:'name province tel'
         })
         res.status(200).json({
             success: true,
