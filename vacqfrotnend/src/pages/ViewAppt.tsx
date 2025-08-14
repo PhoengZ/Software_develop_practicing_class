@@ -4,32 +4,10 @@ import appointmentServices from "../features/appointmentServices";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import CreatingForm from "../components/CreatingForm";
+import type { Appointment } from "../models/model";
 
 function ViewAppt(){
-    type Appointment = {
-        id: string,
-        hospital:hospitalField,
-        apptDate:Date,
-        user:string
-    }
-    type Hospital = {
-        id: string,
-        name: string
-    }
-    type hospitalField = {
-        name:string,
-        province: string,
-        tel: string
-    }
-    const [Hospitals, setHospitals] = useState<Hospital[]>([])
-    useEffect(()=>{
-        async function getHospitals() {
-            const response = await hospitalServices.getHospitals()
-            const hospitalName = response.map((hospital: any)=>hospital.name)
-            setHospitals(hospitalName)
-        }
-        getHospitals()
-    },[])
+    
     const [Page, setPage] = useState(1)
     const [limit, setLimit] = useState(25)
     const location = useLocation();
