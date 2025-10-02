@@ -1,11 +1,16 @@
 const {Pool} = require('pg')
 
 var connectDB = new Pool({
-    user:'admin',
-    host:'localhost',
-    database:'albums',
-    password:'root',
-    port:5433
+    // user:'admin',
+    // host:'localhost',
+    // database:'albums',
+    // password:'root',
+    // port:5433
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
 })
 
 async function createAlbumsTable(){

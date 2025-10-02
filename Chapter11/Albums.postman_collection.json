@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "3a145ed0-e3b9-4bd0-9184-8e87875f2037",
+		"name": "Albums",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39216471"
+	},
+	"item": [
+		{
+			"name": "getAllAlbums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/albums",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSingleAlbum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/albums/:id",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"albums",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createAlbum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"{{$randomFirstName}}\",\r\n    \"artist\":\"{{$randomFirstName}}\",\r\n    \"price\":{{$randomPrice}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/albums",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAlbum",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"{{$randomFirstName}}\",\r\n    \"artist\":\"{{$randomFirstName}}\",\r\n    \"price\":{{$randomPrice}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/albums/:id",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"albums",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAlbum",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/albums/:id",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"albums",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}

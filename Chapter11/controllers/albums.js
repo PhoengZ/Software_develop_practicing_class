@@ -8,10 +8,7 @@ exports.getAlbums = async(req,res,next)=>{
                 message: err.message || `Some error occured while retrieving all albums`
             })
         }else{
-            res.status(200).json({
-                success: true,
-                data: data
-            })
+            res.status(200).json(data)
         }
     })
 }
@@ -30,10 +27,7 @@ exports.getAlbum = async (req, res, next)=>{
                 message: `Error retrieving album with the id ${id}`
             })
         }else{
-            res.status(200).json({
-                success: true,
-                data: data
-            })
+            res.status(200).json(data)
         }
     })
 }
@@ -57,10 +51,7 @@ exports.createAlbum = async (req,res,next)=>{
                 message: 'Some error occur while creating album'
             })
         }else{
-            res.status(201).json({
-                success: true,
-                data: data
-            })
+            res.status(201).json(data)
         }
     })
 }
@@ -87,10 +78,7 @@ exports.updateAlbum = async(req,res,next)=>{
                 message: `Error updating album with id ${id}`
             })
         }else{
-            res.status(200).json({
-                success: true,
-                data: data
-            })
+            res.status(200).json(data)
         }
     })
 }

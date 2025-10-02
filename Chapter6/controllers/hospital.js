@@ -13,7 +13,7 @@ exports.getHospitalsById = (req,res,next)=>{
 }
 
 exports.createHospital = (req,res,next)=>{
-    res.status(201).json({
+    res.status(200).json({
         success: true,
         msg: `Create a new Hospital }`
     })

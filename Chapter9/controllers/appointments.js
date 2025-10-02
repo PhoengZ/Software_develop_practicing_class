@@ -70,6 +70,7 @@ exports.addAppointment = async(req,res,next)=>{
         }
         const hID = req.params.hospitalID
         req.body.hospital = hID
+        req.body.user = uID
         const hospital = await Hospital.findById(hID)
         if (!hospital){
             return res.status(404).json({
